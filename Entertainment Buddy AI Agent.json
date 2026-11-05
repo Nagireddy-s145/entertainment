@@ -1,0 +1,140 @@
+{
+  "name": "Entertainment Buddy AI Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        368,
+        144
+      ],
+      "id": "edfc5c15-4372-417f-b537-860cc618e35f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        240,
+        352
+      ],
+      "id": "081471b3-ffe8-4f9c-a84a-62dc270fb08a",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": null,
+          "name": "",
+          "__aiGatewayManaged": true
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        384,
+        352
+      ],
+      "id": "096a3fe0-4fce-4865-9115-96e9e4371d56",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        528,
+        352
+      ],
+      "id": "a95f0a2b-a6cf-4af8-aa5b-0bd40adf1b82",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        128,
+        144
+      ],
+      "id": "3891eee0-61cd-4363-a4fd-60c3b09a15f0",
+      "name": "When chat message received",
+      "webhookId": "4301203e-fa44-4fb2-8c15-ea98b2c116d8"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4564f874-30f0-41fa-bcb4-ad80894d9027",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "608517c40ee9983a4f73a2c9167fa9ae6576fc275331a6086f39d5e14f6c2cf0"
+  },
+  "nodeGroups": [],
+  "id": "AJyZgQT9ENsjWytO",
+  "tags": []
+}
